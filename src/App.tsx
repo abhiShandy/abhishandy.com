@@ -290,6 +290,9 @@ function App() {
           </div>
         </div>
       </div>
+      <div className="text-right p-2">
+        Built with React &amp; Tailwind. Hosted on Netlify.
+      </div>
     </div>
   );
 }
