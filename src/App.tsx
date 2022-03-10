@@ -275,6 +275,21 @@ function App() {
           </WorkExCard>
         </div>
       </div>
+      <div className="py-12 lg:px-72 md:px-24 px-12">
+        <div className="text-5xl font-bold text-green-400">Education</div>
+        <div className="grid md:grid-cols-2 grid-cols-1">
+          <div className="border-l-4 p-4 my-4">
+            <div>PhD in Materials Engineering</div>
+            <div>Rensselaer Polytechnic Institute</div>
+            <div className="text-green-400">Aug 2017 - Dec 2021</div>
+          </div>
+          <div className="border-l-4 p-4 my-4">
+            <div>B.Tech &amp; M.Tech. in Materials Engineering</div>
+            <div>IIT Madras</div>
+            <div className="text-green-400">Aug 2012 - May 2017</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
