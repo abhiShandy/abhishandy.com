@@ -53,7 +53,7 @@ function App() {
           />
         </div>
       </div>
-      <div className="my-12 lg:px-72 md:px-24 px-12 flex flex-col">
+      <div className="mt-12 lg:px-72 md:px-24 px-12 flex flex-col">
         <div className="text-3xl font-bold text-green-400 mb-4">Skills</div>
         <SkillCard title="Programming Languages">
           <SkillWrapper>
@@ -115,6 +115,23 @@ function App() {
           </span>
         </SkillCard>
       </div>
+
+      <div className="mt-4 lg:px-72 md:px-24 px-10 flex flex-col">
+        <div className="text-3xl font-bold text-green-400 mb-4">Donations</div>
+        <div className="mb-6">
+          <p className="text-xs md:text-lg">
+            Bitcoin: bc1q02q6kzvrgfhrn7d856zwjad3x7qucl2mxwtw9e
+            <br />
+            <a
+              className="text-sm text-green-400"
+              href="https://mempool.space/address/bc1q02q6kzvrgfhrn7d856zwjad3x7qucl2mxwtw9e"
+            >
+              mempool.space
+            </a>
+          </p>
+        </div>
+      </div>
+
       <div className="text-center md:text-right text-xs p-2">
         Built with React &amp; Tailwind. <br /> Hosted on Netlify.
       </div>
