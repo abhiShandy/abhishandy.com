@@ -3,7 +3,7 @@ const CPlusPlus = () => (
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     viewBox="0 0 306 344.35"
-    className="h-12 mx-auto"
+    className="h-12"
   >
     <path
       fill="currentColor"

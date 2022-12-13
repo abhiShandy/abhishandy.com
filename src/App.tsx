@@ -8,14 +8,14 @@ library.add(fab, fas);
 function SkillCard({ title, children }: any) {
   return (
     <div className="rounded-xl md:max-w-lg mb-6 max-w-xs inline-block align-top">
-      <h1 className="mb-2 underline">{title}</h1>
+      <h1 className="mb-2">#{title}</h1>
       <div className="flex flex-row">{children}</div>
     </div>
   );
 }
 
 const SkillWrapper = ({ children }: any) => (
-  <div className="flex-1 text-center mx-2">{children}</div>
+  <div className="mx-2 md:mx-4">{children}</div>
 );
 
 const SocialLink = ({ href, icon }: { href: string; icon: IconName }) => (
@@ -23,7 +23,7 @@ const SocialLink = ({ href, icon }: { href: string; icon: IconName }) => (
     href={href}
     target="_blank"
     rel="noreferrer"
-    className="hover:text-green-400 flex-1 text-center md:text-left md:flex-none"
+    className="hover:text-green-400 flex-1 md:text-left md:flex-none"
   >
     <FontAwesomeIcon icon={["fab", icon]} size="3x" />
   </a>
@@ -37,7 +37,7 @@ function App() {
         <p className="text-3xl mt-6">
           <span className="text-green-400">@</span>abhishandy
         </p>
-        <p className="mt-6 text-lg">
+        <p className="mt-6 text-lg md:w-6/12">
           I'm a <span className="text-green-400">software-generalist</span> who
           is passionate about{" "}
           <span className="text-green-400">scientific-software</span>,{" "}
@@ -53,18 +53,18 @@ function App() {
           />
         </div>
       </div>
-      <div className="my-12 lg:px-72 md:px-24 px-12">
+      <div className="my-12 lg:px-72 md:px-24 px-12 flex flex-col">
         <div className="text-3xl font-bold text-green-400 mb-4">Skills</div>
         <SkillCard title="Programming Languages">
           <SkillWrapper>
-            <FontAwesomeIcon icon={["fab", "python"]} size="3x" />
-          </SkillWrapper>
-          <div className="flex-1">
-            <CPlusPlus />
-          </div>
-          <SkillWrapper>
             <FontAwesomeIcon icon={["fab", "js"]} size="3x" />
           </SkillWrapper>
+          <SkillWrapper>
+            <FontAwesomeIcon icon={["fab", "python"]} size="3x" />
+          </SkillWrapper>
+          <div>
+            <CPlusPlus />
+          </div>
         </SkillCard>
         <SkillCard title="Frontend">
           <SkillWrapper>
@@ -97,22 +97,25 @@ function App() {
             <FontAwesomeIcon icon={["fab", "php"]} size="3x" />
           </SkillWrapper>
         </SkillCard>
-        <SkillCard title="Miscellaneous">
+        <SkillCard title="DevOps">
           <SkillWrapper>
             <FontAwesomeIcon icon={["fab", "linux"]} size="3x" />
           </SkillWrapper>
           <SkillWrapper>
             <FontAwesomeIcon icon={["fab", "aws"]} size="3x" />
           </SkillWrapper>
+          <SkillWrapper>
+            <FontAwesomeIcon icon={["fab", "digital-ocean"]} size="3x" />
+          </SkillWrapper>
         </SkillCard>
-        <SkillCard title="Scientific Software">
-          <span>
+        <SkillCard title="Science">
+          <span className="">
             Molecular Dynamics &middot; Density Functional Theory &middot;
             Scientific Plots with Matplotlib &middot; MATLAB
           </span>
         </SkillCard>
       </div>
-      <div className="text-center text-xs p-2">
+      <div className="text-center md:text-right text-xs p-2">
         Built with React &amp; Tailwind. <br /> Hosted on Netlify.
       </div>
     </div>
