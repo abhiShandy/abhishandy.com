@@ -15,10 +15,6 @@ function SkillCard({ title, children }: any) {
   );
 }
 
-function WorkExCard({ children }: any) {
-  return <div className="border-l-4 p-4 my-4 md:inline-block">{children}</div>;
-}
-
 function App() {
   return (
     <div className="w-full bg-black bg-opacity-95 text-white font-mono">
@@ -217,78 +213,6 @@ function App() {
           <span className="mx-4">Matplotlib</span>
           <span className="mx-4">MATLAB</span>
         </SkillCard>
-      </div>
-      <div className="py-12 lg:px-72 md:px-24 px-12">
-        <div className="text-5xl font-bold text-green-400">Work Experience</div>
-        <div className="grid md:grid-cols-2 grid-cols-1">
-          <WorkExCard>
-            <div className="font-bold text-xl">
-              Full-stack engineer @{" "}
-              <a
-                href="https://greenactionstudio.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Green Action Studio
-              </a>
-            </div>
-            <div className="text-green-400">Jan 2022 - present</div>
-          </WorkExCard>
-          <WorkExCard>
-            <div className="font-bold text-xl">
-              Developer @{" "}
-              <a href="https://wiiqare.com" target="_blank" rel="noreferrer">
-                WiiQare
-              </a>
-            </div>
-            <div className="text-green-400">Dec 2021 - present</div>
-          </WorkExCard>
-          <WorkExCard>
-            <div className="font-bold text-xl">
-              Graduate research &amp; teaching assistant @{" "}
-              <a href="https://rpi.edu" target="_blank" rel="noreferrer">
-                RPI
-              </a>
-            </div>
-            <div className="text-green-400">
-              Aug 2017 - Dec 2020, Aug 2021 - Dec 2021
-            </div>
-          </WorkExCard>
-          <WorkExCard>
-            <div className="font-bold text-xl">
-              Front-end intern @{" "}
-              <a href="https://ynos.in" target="_blank" rel="noreferrer">
-                YNOS Venture Engine
-              </a>
-            </div>
-            <div className="text-green-400">Jun 2021 - Aug 2021</div>
-          </WorkExCard>
-          <WorkExCard>
-            <div className="font-bold text-xl">
-              Research intern @ YNOS Venture Engine
-            </div>
-            <div className="text-green-400">May 2015 - Jul 2015</div>
-          </WorkExCard>
-          <WorkExCard>
-            <div className="font-bold text-xl">Front-end intern @ AdWyze</div>
-            <div className="text-green-400">Dec 2014</div>
-          </WorkExCard>
-        </div>
-      </div>
-      <div className="py-12 lg:px-72 md:px-24 px-12">
-        <div className="text-5xl font-bold text-green-400">Education</div>
-        <div className="grid md:grid-cols-2 grid-cols-1">
-          <div className="border-l-4 p-4 my-4">
-            <div>PhD in Materials Engineering</div>
-            <div>Rensselaer Polytechnic Institute</div>
-            <div className="text-green-400">Aug 2017 - Dec 2021</div>
-          </div>
-          <div className="border-l-4 p-4 my-4">
-            <div>B.Tech &amp; M.Tech. in Materials Engineering</div>
-            <div>IIT Madras</div>
-            <div className="text-green-400">Aug 2012 - May 2017</div>
-          </div>
-        </div>
       </div>
       <div className="text-right p-2">
         Built with React &amp; Tailwind. Hosted on Netlify.
