@@ -129,6 +129,15 @@ function App() {
               mempool.space
             </a>
           </p>
+          <p className="text-xs md:text-lg mt-4">
+            PayNym:{" "}
+            <a
+              href="https://paynym.is/+smallresonance866"
+              className="text-green-400"
+            >
+              +smallresonance866
+            </a>
+          </p>
         </div>
       </div>
 
