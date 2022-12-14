@@ -119,7 +119,7 @@ function App() {
       <div className="mt-4 lg:px-72 md:px-24 px-10 flex flex-col">
         <div className="text-3xl font-bold text-green-400 mb-4">Donations</div>
         <div className="mb-6">
-          <p className="text-xs md:text-lg">
+          <p className="text-xs md:text-lg overflow-auto">
             Bitcoin: bc1q02q6kzvrgfhrn7d856zwjad3x7qucl2mxwtw9e
             <br />
             <a
@@ -138,10 +138,34 @@ function App() {
               +smallresonance866
             </a>
           </p>
+          <p className="mt-4 text-xs md:text-lg overflow-auto ">
+            Monero:
+            458Em3CCzc8cZoWhyFLvSgJymD3wm4eCsJ6ix8HpHYwUDo6S3Xj8MCqRQGoopPehj6SZdf9mVaTnhSWuD38CZdUZNbRK3kk
+          </p>
+
+          <p className="mt-4">
+            <a
+              href="https://geyser.fund/project/bwbip47"
+              className="text-green-400"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Geyser fund
+            </a>{" "}
+            for implementing BIP47 in{" "}
+            <a
+              className="text-green-400"
+              href="https://bluewallet.io/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Bluewallet
+            </a>
+          </p>
         </div>
       </div>
 
-      <div className="text-center md:text-right text-xs p-2">
+      <div className="text-center md:text-right text-xs p-2 my-4">
         Built with React &amp; Tailwind. <br /> Hosted on Netlify.
       </div>
     </div>
