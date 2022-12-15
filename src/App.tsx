@@ -165,7 +165,7 @@ function App() {
         </div>
       </div>
 
-      <div className="text-center md:text-right text-xs p-2 my-4">
+      <div className="text-center md:text-left md:pl-24 lg:pl-72 text-xs p-2 my-4">
         Built with React &amp; Tailwind. <br /> Hosted on Netlify.
       </div>
     </div>
