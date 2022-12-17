@@ -55,6 +55,23 @@ function App() {
         </div>
       </div>
 
+      {/* Github Contributions */}
+      <div className="mt-4 lg:px-72 md:px-24 px-12 flex flex-col">
+        <p>@work</p>
+        <a href="httpsL//github.com/abhishandilya">
+          <img
+            src="https://ghchart.rshah.org/abhishandilya"
+            alt="abhishandy's Github chart"
+          />
+        </a>
+        <p className="mt-4">@personal</p>
+        <a href="https://github.com/abhishandy">
+          <img
+            src="https://ghchart.rshah.org/abhishandy"
+            alt="abhishandy's Github chart"
+          />
+        </a>
+      </div>
       {/* Skills */}
       <div className="mt-12 lg:px-72 md:px-24 px-12 flex flex-col">
         <div className="text-3xl font-bold text-green-400 mb-4">Skills</div>
