@@ -32,6 +32,7 @@ const SocialLink = ({ href, icon }: { href: string; icon: IconName }) => (
 function App() {
   return (
     <div className="w-full bg-black bg-opacity-95 text-white font-mono">
+      {/* Bio */}
       <div className="pt-10 mb-6 lg:px-72 md:px-24 px-12">
         <p className="text-5xl">Abhishek Shandilya</p>
         <p className="text-3xl mt-6">
@@ -40,9 +41,9 @@ function App() {
         <p className="mt-6 text-lg md:w-6/12">
           I'm a <span className="text-green-400">software-generalist</span> who
           is passionate about{" "}
-          <span className="text-green-400">scientific-software</span>,{" "}
-          <span className="text-green-400">web-development</span> and{" "}
-          <span className="text-green-400">Bitcoin</span>.
+          <span className="text-green-400">web-development</span>,{" "}
+          <span className="text-green-400">Bitcoin</span> and{" "}
+          <span className="text-green-400">scientific-software</span>.
         </p>
         <div className="mt-6 flex w-full md:gap-4">
           <SocialLink href="https://github.com/abhishandy" icon="github" />
@@ -53,6 +54,8 @@ function App() {
           />
         </div>
       </div>
+
+      {/* Skills */}
       <div className="mt-12 lg:px-72 md:px-24 px-12 flex flex-col">
         <div className="text-3xl font-bold text-green-400 mb-4">Skills</div>
         <SkillCard title="Programming Languages">
@@ -116,6 +119,7 @@ function App() {
         </SkillCard>
       </div>
 
+      {/* Donations */}
       <div className="mt-4 lg:px-72 md:px-24 px-10 flex flex-col">
         <div className="text-3xl font-bold text-green-400 mb-4">Donations</div>
         <div className="mb-6">
