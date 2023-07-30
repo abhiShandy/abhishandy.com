@@ -1,5 +1,13 @@
-import { App, CfnOutput, RemovalPolicy, Stack } from "aws-cdk-lib";
-import { CloudFrontWebDistribution } from "aws-cdk-lib/aws-cloudfront";
+import { App, CfnOutput, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
+import {
+  Certificate,
+  CertificateValidation,
+} from "aws-cdk-lib/aws-certificatemanager";
+import {
+  CloudFrontWebDistribution,
+  ViewerCertificate,
+} from "aws-cdk-lib/aws-cloudfront";
+import { HostedZone } from "aws-cdk-lib/aws-route53";
 import {
   BlockPublicAccess,
   Bucket,
@@ -11,8 +19,17 @@ import { join } from "path";
 const app = new App();
 
 class MyStack extends Stack {
-  constructor(scope: App, id: string) {
-    super(scope, id);
+  constructor(scope: App, id: string, props?: StackProps) {
+    super(scope, id, props);
+
+    const hostedZone = HostedZone.fromLookup(this, "HostedZone", {
+      domainName: "abhishandy.com",
+    });
+
+    const SSLCert = new Certificate(this, "SSLCert", {
+      domainName: "abhishandy.com",
+      validation: CertificateValidation.fromDns(hostedZone),
+    });
 
     const bucket = new Bucket(this, "bucket", {
       websiteIndexDocument: "index.html",
@@ -27,6 +44,9 @@ class MyStack extends Stack {
       this,
       "Cloudfront",
       {
+        viewerCertificate: ViewerCertificate.fromAcmCertificate(SSLCert, {
+          aliases: ["abhishandy.com"],
+        }),
         errorConfigurations: [
           {
             errorCode: 403,
@@ -64,4 +84,9 @@ class MyStack extends Stack {
   }
 }
 
-new MyStack(app, "abhishandydotcom");
+new MyStack(app, "abhishandydotcom", {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION,
+  },
+});
