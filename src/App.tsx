@@ -45,6 +45,17 @@ function App() {
           <span className="text-green-400">Bitcoin</span> and{" "}
           <span className="text-green-400">scientific-software</span>.
         </p>
+
+        <br />
+
+        <a
+          className="text-green-400"
+          target="_blank"
+          href="https://abhishandy.substack.com"
+        >
+          Subscribe to my newsletter
+        </a>
+
         <div className="mt-6 flex w-full md:gap-4">
           <SocialLink href="https://github.com/abhishandy" icon="github" />
           <SocialLink href="https://twitter.com/abhishandy" icon="twitter" />
