@@ -1,5 +1,7 @@
 # Personal Website using ReactJS
 
-`npm i`
+Setup bun from [bun.sh](https://bun.sh)
 
-`npm start`
+`bun i`
+
+`bun start`
