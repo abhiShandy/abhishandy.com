@@ -5,6 +5,7 @@ import {
 } from "aws-cdk-lib/aws-certificatemanager";
 import {
   CloudFrontWebDistribution,
+  OriginAccessIdentity,
   ViewerCertificate,
 } from "aws-cdk-lib/aws-cloudfront";
 import {
@@ -40,13 +41,14 @@ class MyStack extends Stack {
     });
 
     const bucket = new Bucket(this, "bucket", {
-      websiteIndexDocument: "index.html",
-      publicReadAccess: true,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
       blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
       accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
     });
+
+    const oai = new OriginAccessIdentity(this, "OAI");
+    bucket.grantRead(oai);
 
     const cloudfrontDistribution = new CloudFrontWebDistribution(
       this,
@@ -55,19 +57,12 @@ class MyStack extends Stack {
         viewerCertificate: ViewerCertificate.fromAcmCertificate(SSLCert, {
           aliases: [domainName],
         }),
-        errorConfigurations: [
-          {
-            errorCode: 403,
-            errorCachingMinTtl: 10,
-            responsePagePath: "/index.html",
-            responseCode: 200,
-          },
-        ],
         defaultRootObject: "/index.html",
         originConfigs: [
           {
             s3OriginSource: {
               s3BucketSource: bucket,
+              originAccessIdentity: oai,
             },
             behaviors: [
               {
