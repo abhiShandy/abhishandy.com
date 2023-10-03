@@ -58,6 +58,20 @@ class MyStack extends Stack {
           aliases: [domainName],
         }),
         defaultRootObject: "/index.html",
+        errorConfigurations: [
+          {
+            errorCode: 403,
+            responseCode: 200,
+            responsePagePath: "/index.html",
+            errorCachingMinTtl: 0,
+          },
+          {
+            errorCode: 404,
+            responseCode: 200,
+            responsePagePath: "/index.html",
+            errorCachingMinTtl: 0,
+          },
+        ],
         originConfigs: [
           {
             s3OriginSource: {
