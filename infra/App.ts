@@ -43,7 +43,7 @@ class MyStack extends Stack {
     const bucket = new Bucket(this, "bucket", {
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
-      blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
     });
 
