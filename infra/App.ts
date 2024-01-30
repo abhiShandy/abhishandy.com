@@ -40,11 +40,18 @@ class MyStack extends Stack {
       validation: CertificateValidation.fromDns(hostedZone),
     });
 
+    const logBucket = new Bucket(this, "serverAccessLogs", {
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      accessControl: BucketAccessControl.LOG_DELIVERY_WRITE,
+    });
+
     const bucket = new Bucket(this, "bucket", {
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
+      serverAccessLogsBucket: logBucket,
+      serverAccessLogsPrefix: "s3",
     });
 
     const oai = new OriginAccessIdentity(this, "OAI");
@@ -57,6 +64,10 @@ class MyStack extends Stack {
         viewerCertificate: ViewerCertificate.fromAcmCertificate(SSLCert, {
           aliases: [domainName],
         }),
+        loggingConfig: {
+          bucket: logBucket,
+          prefix: "cloudfront",
+        },
         defaultRootObject: "/index.html",
         errorConfigurations: [
           {
