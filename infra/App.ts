@@ -46,6 +46,7 @@ class MyStack extends Stack {
     const logBucket = new Bucket(this, "serverAccessLogs", {
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       accessControl: BucketAccessControl.LOG_DELIVERY_WRITE,
+      enforceSSL: true,
     });
 
     const bucket = new Bucket(this, "bucket", {
