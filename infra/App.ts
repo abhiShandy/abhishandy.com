@@ -84,6 +84,26 @@ class MyStack extends Stack {
         sampledRequestsEnabled: true,
         metricName: "website-webacl",
       },
+      rules: [
+        {
+          name: "AWS-AWSManagedRulesAmazonIpReputationList",
+          priority: 0,
+          statement: {
+            managedRuleGroupStatement: {
+              name: "AWSManagedRulesAmazonIpReputationList",
+              vendorName: "AWS",
+            },
+          },
+          overrideAction: {
+            none: {},
+          },
+          visibilityConfig: {
+            cloudWatchMetricsEnabled: true,
+            sampledRequestsEnabled: true,
+            metricName: "AWS-AWSManagedRulesAmazonIpReputationList",
+          },
+        },
+      ],
     });
 
     const cloudfrontDistribution = new CloudFrontWebDistribution(
