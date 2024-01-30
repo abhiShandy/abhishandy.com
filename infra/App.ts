@@ -19,8 +19,11 @@ import {
   BlockPublicAccess,
   Bucket,
   BucketAccessControl,
+  EventType,
 } from "aws-cdk-lib/aws-s3";
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { SnsDestination } from "aws-cdk-lib/aws-s3-notifications";
+import { Topic } from "aws-cdk-lib/aws-sns";
 import { join } from "path";
 
 const app = new App();
@@ -51,8 +54,21 @@ class MyStack extends Stack {
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
       serverAccessLogsBucket: logBucket,
-      serverAccessLogsPrefix: "s3",
+      serverAccessLogsPrefix: "s3/website/",
+      enforceSSL: true,
     });
+
+    const bucketTopic = new Topic(this, "S3-topic");
+
+    bucket.addEventNotification(
+      EventType.OBJECT_REMOVED,
+      new SnsDestination(bucketTopic)
+    );
+
+    logBucket.addEventNotification(
+      EventType.OBJECT_REMOVED,
+      new SnsDestination(bucketTopic)
+    );
 
     const oai = new OriginAccessIdentity(this, "OAI");
     bucket.grantRead(oai);
