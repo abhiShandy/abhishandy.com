@@ -5,6 +5,7 @@ import {
 } from "aws-cdk-lib/aws-certificatemanager";
 import {
   CloudFrontWebDistribution,
+  FailoverStatusCode,
   OriginAccessIdentity,
   ViewerCertificate,
 } from "aws-cdk-lib/aws-cloudfront";
@@ -47,6 +48,11 @@ class MyStack extends Stack {
     const logBucket = new Bucket(this, "serverAccessLogs", {
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       accessControl: BucketAccessControl.LOG_DELIVERY_WRITE,
+      lifecycleRules: [
+        {
+          expiredObjectDeleteMarker: true,
+        },
+      ],
     });
 
     const bucket = new Bucket(this, "bucket", {
@@ -57,6 +63,11 @@ class MyStack extends Stack {
       serverAccessLogsBucket: logBucket,
       serverAccessLogsPrefix: "s3/website/",
       enforceSSL: true,
+      lifecycleRules: [
+        {
+          expiredObjectDeleteMarker: true,
+        },
+      ],
     });
 
     const bucketTopic = new Topic(this, "S3-topic");
@@ -118,7 +129,7 @@ class MyStack extends Stack {
           bucket: logBucket,
           prefix: "cloudfront",
         },
-        defaultRootObject: "/index.html",
+        defaultRootObject: "index.html",
         errorConfigurations: [
           {
             errorCode: 403,
@@ -139,6 +150,11 @@ class MyStack extends Stack {
               s3BucketSource: bucket,
               originAccessIdentity: oai,
             },
+            failoverS3OriginSource: {
+              s3BucketSource: bucket,
+              originAccessIdentity: oai,
+            },
+            failoverCriteriaStatusCodes: [FailoverStatusCode.FORBIDDEN],
             behaviors: [
               {
                 isDefaultBehavior: true,
