@@ -25,7 +25,6 @@ import {
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { SnsDestination } from "aws-cdk-lib/aws-s3-notifications";
 import { Topic } from "aws-cdk-lib/aws-sns";
-import { CfnWebACL } from "aws-cdk-lib/aws-wafv2";
 import { join } from "path";
 
 const app = new App();
@@ -85,38 +84,6 @@ class MyStack extends Stack {
     const oai = new OriginAccessIdentity(this, "OAI");
     bucket.grantRead(oai);
 
-    const webAcl = new CfnWebACL(this, "WebACL", {
-      defaultAction: {
-        allow: {},
-      },
-      scope: "CLOUDFRONT",
-      visibilityConfig: {
-        cloudWatchMetricsEnabled: true,
-        sampledRequestsEnabled: true,
-        metricName: "website-webacl",
-      },
-      rules: [
-        {
-          name: "AWS-AWSManagedRulesAmazonIpReputationList",
-          priority: 0,
-          statement: {
-            managedRuleGroupStatement: {
-              name: "AWSManagedRulesAmazonIpReputationList",
-              vendorName: "AWS",
-            },
-          },
-          overrideAction: {
-            none: {},
-          },
-          visibilityConfig: {
-            cloudWatchMetricsEnabled: true,
-            sampledRequestsEnabled: true,
-            metricName: "AWS-AWSManagedRulesAmazonIpReputationList",
-          },
-        },
-      ],
-    });
-
     const cloudfrontDistribution = new CloudFrontWebDistribution(
       this,
       "Cloudfront",
@@ -124,7 +91,6 @@ class MyStack extends Stack {
         viewerCertificate: ViewerCertificate.fromAcmCertificate(SSLCert, {
           aliases: [domainName],
         }),
-        webACLId: webAcl.attrArn,
         loggingConfig: {
           bucket: logBucket,
           prefix: "cloudfront",
