@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>abhishandy.com</title>
-  </head>
-  <body class="bg-black">
-    <p>abhishandy.com</p>
-  </body>
-</html>
+---
+layout: default
+title:  "abhishandy.com"
+---
+
+My blog
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}" style="text-decoration: none;">{{ post.date | date_to_string: "ordinal", "US" }} : {{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
